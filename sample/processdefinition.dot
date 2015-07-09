@@ -1,0 +1,42 @@
+digraph RTFTestFlowageExample {
+	//settings
+	//rankdir="LR"
+	graph [bgcolor="#ffffff"]
+	node [shape=box3d;style=rounded;color="#777777";fontcolor="blue"]
+	edge [color="#C1f474";fontcolor="#2f5f1f"]
+	StartTransaction [label=" Start Transaction ";shape=oval;style="filled";center=true;color="#777777";fillcolor="gray";fontsize=12];StartTransaction -> InitiateExampleApplication [label="  Initiate Example Application  "];
+	ModifyExample [label=" Modify Example "];ModifyExample -> XApproveExample [label="  X-Approve Example  "];
+	ApproveDataTestVal [label=" Approve Data TestVal "];ApproveDataTestVal -> DraftExample [label="  Draft Example  "];
+	ApproveDataTestVal -> CoordinateRegionalReview [label="  Back: Coordinate Regional Resource Review  "];
+	UserRefund [label=" Perform Accounts Receivable (Refund) "];UserRefund -> CommunicateOffice [label="  Communicate Office  "];
+	UserRefund -> XApproveExample [label="  X-Approve Example  "];
+	ReceiveExampleApplication [label=" Receive Example Application "];ReceiveExampleApplication -> PerfromAccountsReceivable [label="  Perform Accounts Receivable  "];
+	ReceiveExampleApplication -> CommunicateOffice [label="  Communicate Office  "];
+	RelodgeTransaction [label=" Relodge Transaction "];RelodgeTransaction -> CompleteTransaction [label="  Complete Transaction  "];
+	RelodgeTransaction -> InitiateExampleApplication [label="  Back: Initiate Example Application  "];
+	FinalizeTransaction [label=" Finalize Transaction "];FinalizeTransaction -> CompleteTransaction [label="  Complete Transaction  "];
+	CommunicateOffice [label=" Communicate Office "];CommunicateOffice -> CompleteTransaction [label="  Rejected: Complete Transaction  "];
+	CommunicateOffice -> RelodgeTransaction [label="  Relodge Transaction  "];
+	ProvideLegalAdvice [label=" Provide Legal Advice "];ProvideLegalAdvice -> DraftExample [label="  Draft Example  "];
+	UserPayment [label=" Perform Accounts Receivable (Payment) "];UserPayment -> ReceivePayment [label="  Back: Receive Payment  "];
+	PerfromAccountsReceivable [label=" Perform Accounts Receivable "];PerfromAccountsReceivable -> ProcessExampleApplication [label="  Process Example Application  "];
+	PerfromAccountsReceivable -> ReceiveExampleApplication [label="  Back: Receive Example Application  "];
+	XApproveExample [label=" X-Approve Example "];XApproveExample -> IsRefund [label="  Rejected: Communicate Office  "];
+	XApproveExample -> FinalizeTransaction [label="  Finalize Transaction  "];
+	XApproveExample -> ModifyExample [label="  Back: Modify Example  "];
+	DraftExample [label=" Draft Example "];DraftExample -> CommunicateOffice [label="  Communicate Office  "];
+	DraftExample -> ProvideLegalAdvice [label="  Provide Legal Advice  "];
+	DraftExample -> PreUserePaymentRequest [label="  PreUsere Example Payment Request  "];
+	ReceivePayment [label=" Receive Payment "];ReceivePayment -> ModifyExample [label="  Modify Example  "];
+	ReceivePayment -> UserPayment [label="  Perform Accounts Receivable (Payment)  "];
+	PreUserePaymentRequest [label=" PreUsere Example Payment Request "];PreUserePaymentRequest -> ReceivePayment [label="  Receive Payment  "];
+	PreUserePaymentRequest -> CommunicateOffice [label="  Communicate Office  "];
+	PerfromDataTestVal [label=" Perform Data TestVal "];PerfromDataTestVal -> ApproveDataTestVal [label="  Approve Data TestVal  "];
+	CoordinateRegionalReview [label=" Coordinate Regional Resource Review "];CoordinateRegionalReview -> CommunicateOffice [label="  Communicate Office  "];
+	CoordinateRegionalReview -> PerfromDataTestVal [label="  Perform Data TestVal  "];
+	ProcessExampleApplication [label=" Process Example Application "];ProcessExampleApplication -> CommunicateOffice [label="  Communicate Office  "];
+	ProcessExampleApplication -> CoordinateRegionalReview [label="  Coordinate Regional Resource Review  "];
+	InitiateExampleApplication [label=" Initiate Example Application "];InitiateExampleApplication -> ReceiveExampleApplication [label="  Receive Example Application  "];
+	IsRefund [shape=diamond;label="IsRefund"];IsRefund -> CommunicateOffice [label="  Communicate Office  "];
+	IsRefund -> UserRefund [label="  Perform Accounts Receivable (Refund)  "];
+	CompleteTransaction [label=" Complete Transaction ";shape=oval;style="filled";center=true;color="#777777";fillcolor="gray";fontsize=12];}

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<process-definition name="RTF-Test Flowage Example">
+  <swimlane name="X-Global Services">
+  </swimlane>
+  <swimlane name="X-Realty Specialist">
+  </swimlane>
+  <swimlane name="X-Assistant Director">
+  </swimlane>
+  <swimlane name="X-Regional Supervisor">
+  </swimlane>
+  <swimlane name="X-Attorney">
+  </swimlane>
+  <swimlane name="X-Regional Staff">
+  </swimlane>
+  <task-node name="ModifyExample">
+    <task name="ModifyExample" swimlane="X-Realty Specialist" description="Modify Example">
+    </task>
+    <transition to="X-ApproveExample" name="X-Approve Example">
+    </transition>
+  </task-node>
+  <task-node name="ApproveDataTestVal">
+    <task name="ApproveDataTestVal" swimlane="X-Regional Supervisor" description="Approve Data TestVal">
+    </task>
+    <transition to="DraftExample" name="Draft Example">
+    </transition>
+    <transition to="CoordinateRegionalReview" name="Back: Coordinate Regional Resource Review">
+    </transition>
+  </task-node>
+  <decision name="IsRefund">
+    <transition to="CommunicateOffice" name="Communicate Office">
+    </transition>
+    <transition to="UserRefund" name="Perform Accounts Receivable (Refund)">
+    </transition>
+  </decision>
+  <task-node name="UserRefund">
+    <task name="UserRefund" swimlane="X-Global Services" description="Perform Accounts Receivable (Refund)">
+    </task>
+    <transition to="CommunicateOffice" name="Communicate Office">
+    </transition>
+    <transition to="X-ApproveExample" name="X-Approve Example">
+    </transition>
+  </task-node>
+  <task-node name="ReceiveExampleApplication">
+    <task name="ReceiveExampleApplication" swimlane="X-Realty Specialist" description="Receive Example Application">
+    </task>
+    <transition to="PerfromAccountsReceivable" name="Perform Accounts Receivable">
+    </transition>
+    <transition to="CommunicateOffice" name="Communicate Office">
+    </transition>
+  </task-node>
+  <task-node name="RelodgeTransaction">
+    <task name="RelodgeTransaction" swimlane="X-Realty Specialist" description="Relodge Transaction">
+    </task>
+    <transition to="Complete Transaction" name="Complete Transaction">
+    </transition>
+    <transition to="InitiateExampleApplication" name="Back: Initiate Example Application">
+    </transition>
+  </task-node>
+  <task-node name="FinalizeTransaction">
+    <task name="FinalizeTransaction" swimlane="X-Realty Specialist" description="Finalize Transaction">
+    </task>
+    <transition to="Complete Transaction" name="Complete Transaction">
+    </transition>
+  </task-node>
+  <task-node name="CommunicateOffice">
+    <task name="CommunicateOffice" swimlane="X-Realty Specialist" description="Communicate Office">
+    </task>
+    <transition to="Complete Transaction" name="Rejected: Complete Transaction">
+    </transition>
+    <transition to="RelodgeTransaction" name="Relodge Transaction">
+    </transition>
+  </task-node>
+  <task-node name="ProvideLegalAdvice">
+    <task name="ProvideLegalAdvice" swimlane="X-Attorney" description="Provide Legal Advice">
+    </task>
+    <transition to="DraftExample" name="Draft Example">
+    </transition>
+  </task-node>
+  <task-node name="UserPayment">
+    <task name="UserPayment" swimlane="X-Global Services" description="Perform Accounts Receivable (Payment)">
+    </task>
+    <transition to="ReceivePayment" name="Back: Receive Payment">
+    </transition>
+  </task-node>
+  <task-node name="PerfromAccountsReceivable">
+    <task name="PerfromAccountsReceivable" swimlane="X-Global Services" description="Perform Accounts Receivable">
+    </task>
+    <transition to="ProcessExampleApplication" name="Process Example Application">
+    </transition>
+    <transition to="ReceiveExampleApplication" name="Back: Receive Example Application">
+    </transition>
+  </task-node>
+  <task-node name="X-ApproveExample">
+    <task name="X-ApproveExample" swimlane="X-Assistant Director" description="X-Approve Example">
+    </task>
+    <transition to="IsRefund" name="Rejected: Communicate Office">
+    </transition>
+    <transition to="FinalizeTransaction" name="Finalize Transaction">
+    </transition>
+    <transition to="ModifyExample" name="Back: Modify Example">
+    </transition>
+  </task-node>
+  <task-node name="DraftExample">
+    <task name="DraftExample" swimlane="X-Realty Specialist" description="Draft Example">
+    </task>
+    <transition to="CommunicateOffice" name="Communicate Office">
+    </transition>
+    <transition to="ProvideLegalAdvice" name="Provide Legal Advice">
+    </transition>
+    <transition to="PreUserePaymentRequest" name="PreUsere Example Payment Request">
+    </transition>
+  </task-node>
+  <task-node name="ReceivePayment">
+    <task name="ReceivePayment" swimlane="X-Realty Specialist" description="Receive Payment">
+    </task>
+    <transition to="ModifyExample" name="Modify Example">
+    </transition>
+    <transition to="UserPayment" name="Perform Accounts Receivable (Payment)">
+    </transition>
+  </task-node>
+  <task-node name="PreUserePaymentRequest">
+    <task name="PreUserePaymentRequest" swimlane="X-Realty Specialist" description="PreUsere Example Payment Request">
+    </task>
+    <transition to="ReceivePayment" name="Receive Payment">
+    </transition>
+    <transition to="CommunicateOffice" name="Communicate Office">
+    </transition>
+  </task-node>
+  <task-node name="PerfromDataTestVal">
+    <task name="PerfromDataTestVal" swimlane="X-Regional Staff" description="Perform Data TestVal">
+    </task>
+    <transition to="ApproveDataTestVal" name="Approve Data TestVal">
+    </transition>
+  </task-node>
+  <task-node name="CoordinateRegionalReview">
+    <task name="CoordinateRegionalReview" swimlane="X-Regional Staff" description="Coordinate Regional Resource Review">
+    </task>
+    <transition to="CommunicateOffice" name="Communicate Office">
+    </transition>
+    <transition to="PerfromDataTestVal" name="Perform Data TestVal">
+    </transition>
+  </task-node>
+  <task-node name="ProcessExampleApplication">
+    <task name="ProcessExampleApplication" swimlane="X-Realty Specialist" description="Process Example Application">
+    </task>
+    <transition to="CommunicateOffice" name="Communicate Office">
+    </transition>
+    <transition to="CoordinateRegionalReview" name="Coordinate Regional Resource Review">
+    </transition>
+  </task-node>
+  <task-node name="InitiateExampleApplication">
+    <task name="InitiateExampleApplication" swimlane="X-Regional Staff" description="Initiate Example Application">
+    </task>
+    <transition to="ReceiveExampleApplication" name="Receive Example Application">
+    </transition>
+  </task-node>
+  <end-state name="Complete Transaction">
+  </end-state>
+  <start-state name="Start Transaction">
+    <transition to="InitiateExampleApplication" name="Initiate Example Application">
+    </transition>
+  </start-state>
+</process-definition>

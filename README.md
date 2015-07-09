@@ -25,7 +25,7 @@ You can generate image running dot tool
 
 For example JPEG image `processimage.jpg` from `processdefinition.dot`:
 ```bash
-bpmndot.xsl && dot -Tjpg -oprocessimage.jpg processdefinition.dot
+dot -Tjpg -oprocessimage.jpg processdefinition.dot
 ```
 
 ## License
